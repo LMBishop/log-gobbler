@@ -29,7 +29,7 @@ export function timeSince(date: Date): string {
     }
 
     const floor = Math.floor(seconds);
-    return `${floor} seconds${floor > 1 ? 's' : ''} ago`;
+    return `${floor} second${floor > 1 ? 's' : ''} ago`;
 }
 
 export function truncateString(str: string, maxLength: number = 50): string {
