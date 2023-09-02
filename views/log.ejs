@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Logs for <%= serverName %></title>
+    <link rel='stylesheet' href='<%= baseUrl %>/static/styles.css' />
+  </head>
+  <body>
+    <h1>Logs for <%= serverName %></h1>
+    <div class="linkset">
+        <a href="<%= baseUrl %>/site/<%= serverName %>/log?hideFailed=true">[Hide failed]</a>
+        <a href="<%= baseUrl %>/site/<%= serverName %>">[Back to site]</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+            <th>Status</th>
+            <th>IP address</th>
+            <th>Path</th>
+            <th>User agent</th>
+            <th>Referrer</th>
+            <th>Time since</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const log of logs) { %>
+            <tr>
+                <td><%= log.status %></td>
+                <td><%= log.ipAddress %></td>
+                <td><%= log.url %></td>
+                <td title="<%= log.userAgent %>"><%= truncateString(log.userAgent) %></td>
+                <td><%= log.referrer %></td>
+                <td title="<%= log.dateTime %>"><%= timeSince(log.datetime, 100) %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+  </body>
+</html>

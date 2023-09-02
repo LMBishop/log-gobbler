@@ -1,0 +1,9 @@
+port: 3000
+
+db: mongodb://user:pass@mongo:27017/database
+base-path: /var/www/nginx 
+base-url: ""
+
+servers:
+  - name: leonardobishop.com
+    file: leonardobishop.com.access.log

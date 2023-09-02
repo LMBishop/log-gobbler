@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analytics</title>
+    <link rel='stylesheet' href='<%= baseUrl %>/static/styles.css' />
+  </head>
+  <body>
+    <h1>Analytics</h1>
+    <table>
+        <thead>
+            <tr>
+            <th>Site</th>
+            <th>Requests in last 24 hours</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const server of Object.keys(servers)) { %>
+            <tr>
+                <td><%= server %></td>
+                <td><%= servers[server] %></td>
+                <td><a href="<%= baseUrl %>/site/<%= server %>">[Details]</a></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+  </body>
+</html>

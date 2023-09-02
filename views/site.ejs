@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analytics for <%= serverName %></title>
+    <link rel='stylesheet' href='<%= baseUrl %>/static/styles.css' />
+  </head>
+  <body>
+    <h1>Analytics for <%= serverName %></h1>
+    <div class="linkset">
+      <a href="<%= baseUrl %>/site/<%= serverName %>/log">[View logs]</a>
+      <a href="<%= baseUrl %>/">[Back]</a>
+    </div>
+    <h2>Top URLs in last 24 hours</h2>
+    <table>
+        <thead>
+            <tr>
+            <th>Count</th>
+            <th>Path</th>
+            <th>Unique</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const request of topRequests) { %>
+            <tr>
+                <td><%= request.count %></td>
+                <td><%= request._id %></td>
+                <td><%= request.uniqueVisitors.length %></td>
+                <td><a href="<%= baseUrl %>/site/<%= serverName %>/log?path=<%= encodeURIComponent(request._id) %>">[Log]</a></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <h2>Top visitors in last 24 hours</h2>
+    <table>
+        <thead>
+            <tr>
+            <th>Count</th>
+            <th>IP address</th>
+            <th>User agent</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const visitor of topVisitors) { %>
+            <tr>
+                <td><%= visitor.count %></td>
+                <td><%= visitor._id.ipAddress %></td>
+                <td title="<%= visitor._id.userAgent %>"><%= truncateString(visitor._id.userAgent) %></td>
+                <td><a href="<%= baseUrl %>/site/<%= serverName %>/log?ipAddress=<%= encodeURIComponent(visitor._id.ipAddress) %>">[Log]</a></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    
+    <h2>Recent sessions</h2>
+    <table>
+        <thead>
+            <tr>
+            <th>IP address</th>
+            <th>User agent</th>
+            <th>Requests</th>
+            <th>Last seen</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const session of recentSessions) { %>
+            <tr>
+                <td><%= session._id.ipAddress %></td>
+                <td title="<%= session._id.userAgent %>"><%= truncateString(session._id.userAgent) %></td>
+                <td><%= session.count %></td>
+                <td title="<%= session.lastRequest %>"><%= timeSince(session.lastRequest) %></td>
+                <td><a href="<%= baseUrl %>/site/<%= serverName %>/log?ipAddress=<%= encodeURIComponent(session._id.ipAddress) %>&userAgent=<%= encodeURIComponent(session._id.userAgent) %>">[Log]</a></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+  </body>
+</html>
