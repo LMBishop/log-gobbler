@@ -1,10 +1,10 @@
 import express from 'express';
+import config from 'config';
 import { logger } from './logger.js';
 import { connect as connectDatabase } from './config/database.js';
 import { router as indexRouter } from './route/index.route.js';
 import { router as siteRouter } from './route/site.route.js';
 import { watchFiles } from './log/setup.js';
-import config from 'config';
 
 const app = express();
 
