@@ -10,6 +10,9 @@
         <a href="<%= baseUrl %>/site/<%= serverName %>/log?hideFailed=true">[Hide failed]</a>
         <a href="<%= baseUrl %>/site/<%= serverName %>">[Back to site]</a>
     </div>
+    <% if (locals.error) { %>
+      <%- include('partials/error', { error: error }) %>
+    <% } else { %>
     <table>
         <thead>
             <tr>
@@ -19,6 +22,7 @@
             <th>User agent</th>
             <th>Referrer</th>
             <th>Time since</th>
+            <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,11 +32,13 @@
                 <td><%= log.ipAddress %></td>
                 <td><%= log.url %></td>
                 <td title="<%= log.userAgent %>"><%= truncateString(log.userAgent, 100) %></td>
-                <td><%= log.referrer %></td>
+                <td><%= log.referer %></td>
                 <td title="<%= log.dateTime %>"><%= timeSince(log.datetime) %></td>
+                <td><a href="<%= baseUrl %>/site/<%= serverName %>/log/<%= log._id %>">[Details]</a></td>
             </tr>
             <% } %>
         </tbody>
     </table>
+    <% } %>
   </body>
 </html>

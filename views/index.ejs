@@ -6,6 +6,9 @@
   </head>
   <body>
     <h1>Analytics</h1>
+    <% if (locals.error) { %>
+      <%- include('partials/error', { error: error }) %>
+    <% } else { %>
     <table>
         <thead>
             <tr>
@@ -24,5 +27,6 @@
             <% } %>
         </tbody>
     </table>
+    <% } %>
   </body>
 </html>

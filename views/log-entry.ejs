@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log entry</title>
+    <link rel='stylesheet' href='<%= baseUrl %>/static/styles.css' />
+  </head>
+  <body>
+    <h1>Log entry</h1>
+    <div class="linkset">
+        <a href="<%= baseUrl %>/site/<%= serverName %>/log">[Back to log]</a>
+    </div>
+    <% if (locals.error) { %>
+      <%- include('partials/error', { error: error }) %>
+    <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Log ID</b></td>
+          <td><%= log._id %></td>
+        </tr>
+        <tr>
+          <td><b>IP address</b></td>
+          <td><%= log.ipAddress %></td>
+        </tr>
+        <tr>
+          <td><b>Method</b></td>
+          <td><%= log.method %></td>
+        </tr>
+        <tr>
+          <td><b>URL</b></td>
+          <td><%= log.url %></td>
+        </tr>
+        <tr>
+          <td><b>Protocol</b></td>
+          <td><%= log.protocol %></td>
+        </tr>
+        <tr>
+          <td><b>Status</b></td>
+          <td><%= log.status %></td>
+        </tr>
+        <tr>
+          <td><b>User agent</b></td>
+          <td><%= log.userAgent %></td>
+        </tr>
+        <tr>
+          <td><b>Referrer</b></td>
+          <td><%= log.referer %></td>
+        </tr>
+        <tr>
+          <td><b>Username</b></td>
+          <td><%= log.user %></td>
+        </tr>
+        <tr>
+          <td><b>Bytes sent</b></td>
+          <td><%= log.bytesSent %> (<%= humanFileSize(log.bytesSent) %>)</td>
+        </tr>
+        <tr>
+          <td><b>Date</b></td>
+          <td><%= log.datetime %> (<%= timeSince(log.datetime) %>)</td>
+        </tr>
+      </tbody>
+    </table>
+    <% } %>
+  </body>
+</html>

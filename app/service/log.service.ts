@@ -1,4 +1,5 @@
 import { LogEntryModel } from "../model/log-entry.model.js";
+import { LogEntry } from "../types/log-entry.js";
 
 export async function getRequestsInLastDay(serverName: string): Promise<number> {
     const oneDayAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
@@ -146,3 +147,10 @@ export async function getLogs(serverName: string, options: GetLogsOptions): Prom
 
     return await LogEntryModel.find(query).sort({ datetime: -1 }).skip(options.offset).limit(options.limit).exec();
 };
+
+export async function getLogEntry(serverName: string, logId: string): Promise<any> {
+    return await LogEntryModel.findOne({
+        _id: logId,
+        serverName: serverName
+    }).exec();
+}

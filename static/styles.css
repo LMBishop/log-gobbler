@@ -33,3 +33,10 @@ tr:nth-child(even) {
 .linkset {
     margin: 0.5em 0;
 }
+
+#error {
+    color: #ff4136;
+    background-color: #434e59;
+    padding: 0.5em;
+    display: inline-block;
+}

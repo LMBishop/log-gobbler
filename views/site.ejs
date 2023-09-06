@@ -10,6 +10,9 @@
       <a href="<%= baseUrl %>/site/<%= serverName %>/log">[View logs]</a>
       <a href="<%= baseUrl %>/">[Back]</a>
     </div>
+    <% if (locals.error) { %>
+      <%- include('partials/error', { error: error }) %>
+    <% } else { %>
     <h2>Top URLs in last 24 hours</h2>
     <table>
         <thead>
@@ -76,5 +79,6 @@
             <% } %>
         </tbody>
     </table>
+    <% } %>
   </body>
 </html>
