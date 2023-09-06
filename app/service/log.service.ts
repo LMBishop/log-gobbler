@@ -93,12 +93,17 @@ export async function getRecentSessions(serverName: string): Promise<any[]> {
                 },
                 count: { $sum: 1 },
                 lastRequest: { $max: "$datetime" }
+            },
+        },
+        {
+            $match: {
+                count: { $gt: 1 }
             }
         },
         {
             $sort: {
                 lastRequest: -1
-            }
+            },
         },
         {
             $limit: 10

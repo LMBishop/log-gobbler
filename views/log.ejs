@@ -27,9 +27,9 @@
                 <td><%= log.status %></td>
                 <td><%= log.ipAddress %></td>
                 <td><%= log.url %></td>
-                <td title="<%= log.userAgent %>"><%= truncateString(log.userAgent) %></td>
+                <td title="<%= log.userAgent %>"><%= truncateString(log.userAgent, 100) %></td>
                 <td><%= log.referrer %></td>
-                <td title="<%= log.dateTime %>"><%= timeSince(log.datetime, 100) %></td>
+                <td title="<%= log.dateTime %>"><%= timeSince(log.datetime) %></td>
             </tr>
             <% } %>
         </tbody>
