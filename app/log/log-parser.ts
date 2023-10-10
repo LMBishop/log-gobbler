@@ -2,7 +2,7 @@ import { LogEntry } from "../types/log-entry.js";
 
 export const parseNginxDatetime = (datetime: string): Date => {
     const [day, month, year, hour, minute, second, timezone] = datetime.split(/\/|:| /);
-    const monthIndex = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Nov', 'Dec'].indexOf(month);
+    const monthIndex = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(month);
     const timezoneOffsetMilliseconds = parseInt(timezone.slice(0, 3)) * 60 * 60 * 1000 + parseInt(timezone.slice(3)) * 60 * 1000;
     
     const utcString = `${year}-${(monthIndex + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T${hour}:${minute}:${second}.000Z`;
